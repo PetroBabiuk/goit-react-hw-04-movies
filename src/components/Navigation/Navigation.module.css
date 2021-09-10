@@ -1,0 +1,19 @@
+.navigation {
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #b8c3c7;
+  box-shadow: inset;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 18px;
+}
+
+.activeLink {
+  color: #3f51b5;
+}
