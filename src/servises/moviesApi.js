@@ -1,5 +1,5 @@
 const BASE_URL = "https://api.themoviedb.org/3";
-const APIKEY = "api_key=d9642dccb373084b38b1ae3b08bc851f";
+// const APIKEY = "api_key=d9642dccb373084b38b1ae3b08bc851f";
 
 async function fetchWithErrorHandling(url = '', config = {}) {
     const response = await fetch(url, config);
@@ -9,11 +9,11 @@ async function fetchWithErrorHandling(url = '', config = {}) {
 }
 
 export function fetchTrendingToday() {
-    return fetchWithErrorHandling(`${BASE_URL}/trending/all/day?${APIKEY}`);
+    return fetchWithErrorHandling(`${BASE_URL}/trending/all/day?api_key=d9642dccb373084b38b1ae3b08bc851f`);
 }
 
 export function fetchSearchingMovies(query) {
-    return fetchWithErrorHandling(`${BASE_URL}/search/movie ? ${APIKEY}&language=en-US&query=${query}&page=1&include_adult=false`);
+    return fetchWithErrorHandling(`${BASE_URL}/search/movie?api_key=d9642dccb373084b38b1ae3b08bc851f&language=en-US&query=${query}&page=1&include_adult=false`);
 }
 
 export function fetchMovieById(id) {
