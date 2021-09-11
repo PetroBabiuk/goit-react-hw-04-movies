@@ -9,7 +9,7 @@ async function fetchWithErrorHandling(url = '', config = {}) {
 }
 
 export function fetchTrendingToday() {
-    return fetchWithErrorHandling(`${BASE_URL}/trending/all/day?api_key=d9642dccb373084b38b1ae3b08bc851f`);
+    return fetchWithErrorHandling(`${BASE_URL}/trending/movie/day?api_key=d9642dccb373084b38b1ae3b08bc851f`);
 }
 
 export function fetchSearchingMovies(query) {
@@ -20,7 +20,7 @@ export function fetchMovieById(id) {
     return fetchWithErrorHandling(`${BASE_URL}/movie/${id}?api_key=d9642dccb373084b38b1ae3b08bc851f&language=en-US`);
 }
 
-export function fetchMovieCredits(id) {
+export function fetchMovieCast(id) {
     return fetchWithErrorHandling(`${BASE_URL}/movie/${id}/credits?api_key=d9642dccb373084b38b1ae3b08bc851f&language=en-US`)
 }
 
