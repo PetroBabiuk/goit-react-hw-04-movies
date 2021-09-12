@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { NavLink, Route, useRouteMatch, useParams } from "react-router-dom";
 import { fetchMovieById } from "servises/moviesApi";
-import Cast from './Cast';
-import Reviews from './Reviews';
+import Cast from '../components/Cast';
+import Reviews from '../components/Reviews';
 import ButtonGoBack from "components/ButtonGoBack";
 
 function MovieDetailsPage() {
