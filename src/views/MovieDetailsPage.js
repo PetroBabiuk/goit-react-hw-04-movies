@@ -3,6 +3,7 @@ import { NavLink, Route, useRouteMatch, useParams } from "react-router-dom";
 import { fetchMovieById } from "servises/moviesApi";
 import Cast from './Cast';
 import Reviews from './Reviews';
+import ButtonGoBack from "components/ButtonGoBack";
 
 function MovieDetailsPage() {
     const { movieId } = useParams();
@@ -17,7 +18,7 @@ function MovieDetailsPage() {
         <>
             {movie &&
             <>
-                <button type="button">Go back</button>
+                <ButtonGoBack />
                 <div>
                     <h2>{movie.title} ({movie.release_date})</h2>
                     <img src={`https://image.tmdb.org/t/p/w500${ movie.poster_path }`} alt={movie.title} />
