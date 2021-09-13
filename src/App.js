@@ -4,7 +4,7 @@ import Navigation from 'components/Navigation';
 import { Switch, Route } from 'react-router';
 import HomePage from './views/HomePage';
 import MoviesPage from './views/MoviesPage';
-import MovieDetailsPage from 'views/MovieDetailsPage';
+import MovieDetailsPage from 'components/MovieDetailsPage';
 import NotFoundPage from './views/NotFoundPage';
 import './App.css';
 // import Searchbar from './components/Searchbar';
