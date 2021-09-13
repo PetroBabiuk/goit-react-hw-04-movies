@@ -1,0 +1,19 @@
+.MovieDetailsPage {
+  display: flex;
+  /* flex-wrap: wrap; */
+  padding: 20px 40px;
+}
+
+.MovieDetailsPageImage {
+  max-width: 280px;
+}
+
+.title {
+  max-width: 100%;
+  text-align: center;
+}
+
+.description {
+  margin-left: 20px;
+  margin-right: 20px;
+}
