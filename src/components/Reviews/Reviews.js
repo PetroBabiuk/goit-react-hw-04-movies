@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { fetchMovieReviews } from "servises/moviesApi";
+import s from './Reviews.module.css';
 
 
 function Reviews({ movieId }) {
@@ -20,7 +21,7 @@ function Reviews({ movieId }) {
         <>
             {reviews.length === 0
                 ? <p>We don't have any reviews for this movie</p>
-                : (<ul>
+                : (<ul className={s.Reviews}>
                     {reviews.map(review => <li key={review.id}>
                         <h4>{review.author}</h4>
                         <p>{review.content}</p>
