@@ -11,7 +11,7 @@ function MoviesPage() {
     const [movies, setMovies] = useState([]);
     // const [error, setError] = useState(null);
     // const [pages, setPages] = useState(0);
-    // const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     // const [status, setStatus] = useState('idle');
 
     const history = useHistory();
@@ -20,18 +20,24 @@ function MoviesPage() {
         if (query === '') {
             setQuery(history.location.search.slice(7, history.location.search.length));
         } else {
-            fetchSearchingMovies(query).then(movies => {
+            fetchSearchingMovies(query, currentPage).then(movies => {
                 if (movies.total_results === 0) {
                     throw new Error(`Nothing with name ${query} was not found`);
                 };
-                setMovies([...movies.results]);
+                setMovies(prevMovies => [...prevMovies, ...movies.results]);
                 history.push(`?query=${query}`);
             });
         }
-    }, [history, query]);
+    }, [currentPage, history, query]);
 
     const getQuery = query => {
-        setQuery(query);
+        setQuery(prevQuery => {
+            if (prevQuery !== query) {
+                setMovies([]);
+                setCurrentPage(1);
+                return (query);
+            }
+        });
     }
 
     // const autoScroll = () => {
@@ -46,9 +52,11 @@ function MoviesPage() {
             <Searchbar onSubmit={getQuery} />
             {movies.length === 0
                 ? <h1>Start to search</h1>
-                : <MovieList movies={movies} />
+                : <>
+                    <MovieList movies={movies} />
+                    <ButtonLoadMore onClick={() => setCurrentPage(prevPage => prevPage + 1)}/>
+                </>
             }
-            <ButtonLoadMore />
             <ToastContainer />
         </>
     )

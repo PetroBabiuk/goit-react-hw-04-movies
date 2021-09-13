@@ -8,12 +8,12 @@ async function fetchWithErrorHandling(url = '', config = {}) {
         : Promise.reject(new Error('Not Found'));
 }
 
-export function fetchTrendingToday() {
-    return fetchWithErrorHandling(`${BASE_URL}/trending/movie/day?api_key=d9642dccb373084b38b1ae3b08bc851f`);
+export function fetchTrendingToday(page) {
+    return fetchWithErrorHandling(`${BASE_URL}/trending/movie/day?api_key=d9642dccb373084b38b1ae3b08bc851f&page=${page}`);
 }
 
-export function fetchSearchingMovies(query) {
-    return fetchWithErrorHandling(`${BASE_URL}/search/movie?api_key=d9642dccb373084b38b1ae3b08bc851f&language=en-US&query=${query}&page=1&include_adult=false`);
+export function fetchSearchingMovies(query, page) {
+    return fetchWithErrorHandling(`${BASE_URL}/search/movie?api_key=d9642dccb373084b38b1ae3b08bc851f&language=en-US&query=${query}&page=${page}&include_adult=false`);
 }
 
 export function fetchMovieById(id) {
