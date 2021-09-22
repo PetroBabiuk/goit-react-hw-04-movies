@@ -1,16 +1,14 @@
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const ButtonGoBack = () => {
-    const location = useLocation();
     const history = useHistory();
-    // console.log(location.state.from);
 
     const onGoBack = () => {
-        history.push(location?.state?.from ?? '/movies');
+        history.push(history.location?.state?.from ?? '/');
     }
 
     return (
-            <button type="buttun" onClick={onGoBack}>Go Back</button>
+            <button type="button" onClick={onGoBack}>Go Back</button>
     )
 };
 

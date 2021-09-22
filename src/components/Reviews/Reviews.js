@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import { fetchMovieReviews } from "servises/moviesApi";
 import s from './Reviews.module.css';
 
@@ -11,7 +9,6 @@ function Reviews({ movieId }) {
     useEffect(() => {
         fetchMovieReviews(movieId).then(reviews => {
             if (reviews.results !== []) {
-                // console.log(reviews.results);
                 setReviews(reviews.results);
             }
         });

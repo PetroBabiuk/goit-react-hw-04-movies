@@ -1,10 +1,8 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { NavLink, Route, useRouteMatch, useParams } from "react-router-dom";
+import { NavLink, Route, useRouteMatch, useParams, useLocation } from "react-router-dom";
 import { fetchMovieById } from "servises/moviesApi";
 import Loader from 'react-loader-spinner';
-// import Cast from 'components/Cast';
-// import Reviews from 'components/Reviews';
-import ButtonGoBack from "components/ButtonGoBack";
+import ButtonGoBack from '../ButtonGoBack';
 import s from './MovieDetailsPage.module.css';
 
 const Cast = lazy(() => import('components/Cast' /* webpackChunkName: "Cast" */));
@@ -15,20 +13,23 @@ function MovieDetailsPage() {
     const { movieId } = useParams();
     const { url } = useRouteMatch();
     const [movie, setMovie] = useState(null);
+    const [pathToMovie, setPathToMovie] = useState(null);
 
-        useEffect(() => {
-            fetchMovieById(movieId)
-                .then(film => {
-                    setMovie(film);
-                    // document.body.style.backgroundImage = (`url(https://image.tmdb.org/t/p/w500${film.backdrop_path})`);
-        });
-        }, [movieId]);
+    const location = useLocation();
 
+    useEffect(() => {
+        setPathToMovie(location.state);
+    }, [location]);
+
+    useEffect(() => {
+        fetchMovieById(movieId)
+            .then(film => setMovie(film))}, [movieId]);
+    
     return (
         <>
             {movie &&
                 <>
-                <ButtonGoBack />
+                    <ButtonGoBack />
                     <div className={s.MovieDetailsPage}>
                         {movie.poster_path
                             ? (<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className={s.MovieDetailsPageImage} />)
@@ -44,13 +45,19 @@ function MovieDetailsPage() {
                             </ul>
                             <div>
                                 <h3 className={s.title}>Additional information</h3>
-                                <p><NavLink to={`${url}/cast`}>Cast</NavLink></p>
-                                <p><NavLink to={`${url}/reviews`} >Reviews</NavLink></p>
+                                <p><NavLink to={{
+                                    pathname: `${url}/cast`,
+                                    state: pathToMovie
+                                }}
+                                >Cast</NavLink></p>
+                                <p><NavLink to={{
+                                    pathname: `${url}/reviews`,
+                                    state: pathToMovie
+                                }}
+                                >Reviews</NavLink></p>
                             </div>
                         </div>
                     </div>
-
-                    
                     <div>
                         <Suspense
                             fallback={<Loader

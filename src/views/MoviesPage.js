@@ -9,10 +9,7 @@ import { fetchSearchingMovies } from '../servises/moviesApi';
 function MoviesPage() {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState([]);
-    // const [error, setError] = useState(null);
-    // const [pages, setPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    // const [status, setStatus] = useState('idle');
 
     const history = useHistory();
     
@@ -39,13 +36,6 @@ function MoviesPage() {
             }
         });
     }
-
-    // const autoScroll = () => {
-    //     window.scrollTo({
-    //         top: document.documentElement.scrollHeight,
-    //         behavior: 'smooth',
-    //     });
-    // };
     
     return (
         <>
