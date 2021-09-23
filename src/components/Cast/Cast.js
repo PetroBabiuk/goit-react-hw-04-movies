@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import { fetchMovieCast } from "servises/moviesApi";
 import s from './Cast.module.css';
+import notFoundImage from '../../images/keep-calm-photo-not-found.png';
 
 function Cast({ movieId }) {
     const [actors, setActors] = useState([]);
@@ -20,7 +19,7 @@ function Cast({ movieId }) {
                         <li key={actor.id} className={s.CastItem}>
                             {actor.profile_path
                                 ? (<img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt={actor.name} />)
-                                : (<img src="http://placehold.it/200x300/000000/FFFFFF/?text=There+is+no+photo" alt={actor.name} />)}
+                                : (<img src={notFoundImage} alt={actor.name} width="100%" height="100%" />)}
                             <p className={s.actorName}>{actor.name}</p>
                         </li>
                     )}

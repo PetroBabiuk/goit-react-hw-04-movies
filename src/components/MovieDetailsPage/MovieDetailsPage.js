@@ -4,6 +4,7 @@ import { fetchMovieById } from "servises/moviesApi";
 import Loader from 'react-loader-spinner';
 import ButtonGoBack from '../ButtonGoBack';
 import s from './MovieDetailsPage.module.css';
+import notFoundImage from '../../images/keep-calm-poster-not-found.png';
 
 const Cast = lazy(() => import('components/Cast' /* webpackChunkName: "Cast" */));
 const Reviews = lazy(() => import('components/Reviews' /* webpackChunkName: "Reviews" */));
@@ -23,8 +24,9 @@ function MovieDetailsPage() {
 
     useEffect(() => {
         fetchMovieById(movieId)
-            .then(film => setMovie(film))}, [movieId]);
-    
+            .then(film => setMovie(film))
+    }, [movieId]);
+
     return (
         <>
             {movie &&
@@ -33,7 +35,7 @@ function MovieDetailsPage() {
                     <div className={s.MovieDetailsPage}>
                         {movie.poster_path
                             ? (<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className={s.MovieDetailsPageImage} />)
-                            : (<img src="http://placehold.it/432x648/000000/FFFFFF/?text=There+is+no+poster" alt={movie.name} />)}
+                            : (<img src={notFoundImage} alt={movie.name} />)}
                         <div className={s.description}>
                             <h2 className={s.title}>{movie.title} ({movie.release_date})</h2>
                             <p>User Score : {movie.vote_average * 10}% </p>
